@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" path="res://rocket2/char_rocket2.gd" id="1_17x10"]
 [ext_resource type="Texture2D" uid="uid://pvojojjs1e77" path="res://rocket2/spr_rocket2.png" id="2_h8kqu"]
+[ext_resource type="PackedScene" uid="uid://p4fylv113cjt" path="res://weapon_default/obj_weapon_default.tscn" id="2_vb1bg"]
 [ext_resource type="AudioStream" uid="uid://bkfdv6pqemyoo" path="res://rocket2/snd_thrust_fwd.mp3" id="3_nv618"]
 [ext_resource type="AudioStream" uid="uid://dyscxlxrsbmsq" path="res://rocket2/snd_thrust_reverse.wav" id="4_wrh3y"]
-[ext_resource type="PackedScene" uid="uid://p4fylv113cjt" path="res://weapon_default/obj_weapon_default.tscn" id="5_owdp6"]
 
 [sub_resource type="Curve" id="Curve_p87dh"]
 min_value = -200.0
@@ -35,7 +35,7 @@ position = Vector2(951, 501)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("1_17x10")
 
-[node name="obj_weapon_default" parent="." instance=ExtResource("5_owdp6")]
+[node name="obj_weapon_default" parent="." instance=ExtResource("2_vb1bg")]
 position = Vector2(101.667, -3.33335)
 
 [node name="prt_thrust" type="CPUParticles2D" parent="."]

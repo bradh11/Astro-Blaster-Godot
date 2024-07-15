@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 var max_thrust: float = 500.0
+var max_speed: float = 400.0  # Define the maximum speed
 var rotation_speed: float = 3.0
 var gravity_transition_speed: float = 2.0  # Control the speed of gravity transition
 
@@ -76,6 +77,10 @@ func handle_thrust(delta: float) -> void:
 		current_thrust = 0
 		thrust_particles.emitting = false
 
+	# Clamp the velocity to the maximum speed
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
+
 func handle_shooting() -> void:
 	if Input.is_action_just_pressed("shoot"):
 		print("shooting")
@@ -87,7 +92,7 @@ func update_particle_gravity(delta: float) -> void:
 	thrust_particles.gravity = current_gravity
 
 func apply_movement(delta: float) -> void:
-	velocity *= 0.99  # Apply friction
+	velocity *= pow(0.99, delta)  # Apply friction adjusted by delta
 	move_and_slide()
 
 func create_color_ramp() -> Gradient:

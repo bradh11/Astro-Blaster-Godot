@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://sbw1bbrdy73t"]
 
-[ext_resource type="Script" path="res://weapon_default/area_bullet_default.gd" id="1_d05wf"]
+[ext_resource type="Script" path="res://weapon_default/area_bullet_default.gd" id="1_8mgjs"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xebu"]
 size = Vector2(10, 10)
@@ -9,7 +9,7 @@ size = Vector2(10, 10)
 size = Vector2(10, 10)
 
 [node name="area_bullet_default" type="Area2D"]
-script = ExtResource("1_d05wf")
+script = ExtResource("1_8mgjs")
 
 [node name="spr_bullet_default" type="Sprite2D" parent="."]
 texture = SubResource("PlaceholderTexture2D_6xebu")
