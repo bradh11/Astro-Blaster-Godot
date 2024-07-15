@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://sbw1bbrdy73t"]
+
+[ext_resource type="Script" path="res://weapon_default/area_bullet_default.gd" id="1_d05wf"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_6xebu"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mmrjt"]
+size = Vector2(10, 10)
+
+[node name="area_bullet_default" type="Area2D"]
+script = ExtResource("1_d05wf")
+
+[node name="spr_bullet_default" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_6xebu")
+
+[node name="col_bullet_default" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_mmrjt")

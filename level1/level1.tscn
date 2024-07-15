@@ -1,0 +1,51 @@
+[gd_scene load_steps=4 format=3 uid="uid://cj5m0ppusc1ak"]
+
+[ext_resource type="PackedScene" uid="uid://bocxnycb2lq6a" path="res://rocket2/char_rocket_2.tscn" id="1_jv4y2"]
+[ext_resource type="Texture2D" uid="uid://cdyxt8f3jxrj8" path="res://level1/level1_1920x1080.jpeg" id="2_0r5eh"]
+
+[sub_resource type="GDScript" id="GDScript_285t6"]
+script/source = "extends Node2D
+
+var screen_size: Vector2
+
+func _ready():
+	screen_size = get_viewport_rect().size
+	print(screen_size)
+
+func _process(delta: float):
+	for child in get_children():
+		if child is CharacterBody2D:  # Apply wrapping to all CharacterBody2D nodes (like your rocket)
+			wrap_around(child)
+
+func wrap_around(body: CharacterBody2D):
+	var position = body.position
+	
+	if position.x < 0:
+		position.x = screen_size.x
+	elif position.x > screen_size.x:
+		position.x = 0
+		
+	if position.y < 0:
+		position.y = screen_size.y
+	elif position.y > screen_size.y:
+		position.y = 0
+	
+	body.position = position
+"
+
+[node name="level1" type="Node2D"]
+script = SubResource("GDScript_285t6")
+
+[node name="char_rocket2" parent="." instance=ExtResource("1_jv4y2")]
+position = Vector2(960, 540)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="CanvasLayer"]
+follow_viewport_enabled = true
+
+[node name="Level11920x1080" type="Sprite2D" parent="CanvasLayer/ParallaxBackground"]
+position = Vector2(957, 542)
+texture = ExtResource("2_0r5eh")
+
+[node name="ProjectileRoot" type="Node2D" parent="."]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://p4fylv113cjt"]
+
+[ext_resource type="Script" path="res://weapon_default/obj_weapon_default.gd" id="1_8xf8m"]
+[ext_resource type="PackedScene" uid="uid://sbw1bbrdy73t" path="res://weapon_default/obj_bullet_default.tscn" id="2_dcco5"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_353us"]
+size = Vector2(10, 2)
+
+[node name="obj_weapon_default" type="Node2D"]
+script = ExtResource("1_8xf8m")
+projectile_scene = ExtResource("2_dcco5")
+
+[node name="mrk_weapon_default" type="Marker2D" parent="."]
+position = Vector2(5, 0)
+
+[node name="spr_weapon_default" type="Sprite2D" parent="."]
+texture = SubResource("PlaceholderTexture2D_353us")
