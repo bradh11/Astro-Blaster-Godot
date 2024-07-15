@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-var max_thrust: float = 500.0
-var max_speed: float = 400.0  # Define the maximum speed
+var max_thrust: float = 500.0 # Maximum force applied to accelerate the rocket
+var max_speed: float = 400.0  # Maximum velocity the rocket can reach
 var rotation_speed: float = 3.0
 var gravity_transition_speed: float = 2.0  # Control the speed of gravity transition
 
