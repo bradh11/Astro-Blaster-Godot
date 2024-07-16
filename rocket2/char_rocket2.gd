@@ -1,9 +1,10 @@
 extends CharacterBody2D
 
-var max_thrust: float = 500.0 # Maximum force applied to accelerate the rocket
-var max_speed: float = 400.0  # Maximum velocity the rocket can reach
+var max_thrust: float = 500.0  # Maximum force applied to accelerate the rocket
+var max_speed: float = 400.0   # Maximum velocity the rocket can reach
 var rotation_speed: float = 3.0
 var gravity_transition_speed: float = 2.0  # Control the speed of gravity transition
+var friction: float = 0.4  # Friction factor, should be between 0 (no friction) and 1 (high friction)
 
 @onready var thrust_particles = $prt_thrust
 @onready var snd_thrust_fwd = $snd_thrust_fwd
@@ -77,13 +78,8 @@ func handle_thrust(delta: float) -> void:
 		current_thrust = 0
 		thrust_particles.emitting = false
 
-	# Clamp the velocity to the maximum speed
-	if velocity.length() > max_speed:
-		velocity = velocity.normalized() * max_speed
-
 func handle_shooting() -> void:
 	if Input.is_action_just_pressed("shoot"):
-		print("shooting")
 		weapon.shoot()
 
 func update_particle_gravity(delta: float) -> void:
@@ -92,7 +88,13 @@ func update_particle_gravity(delta: float) -> void:
 	thrust_particles.gravity = current_gravity
 
 func apply_movement(delta: float) -> void:
-	velocity *= pow(0.99, delta)  # Apply friction adjusted by delta
+	# Apply friction by directly reducing the velocity
+	velocity *= 1.0 - friction * delta
+
+	# Clamp the velocity to the maximum speed
+	if velocity.length() > max_speed:
+		velocity = velocity.normalized() * max_speed
+
 	move_and_slide()
 
 func create_color_ramp() -> Gradient:
